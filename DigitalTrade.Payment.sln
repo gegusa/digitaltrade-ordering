@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalTrade.Payment.Host", "DigitalTrade.Payment.Host\DigitalTrade.Payment.Host.csproj", "{1BB77A1F-70AF-4566-AE36-3986FC55D8DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalTrade.Payment.Api.Contracts.Kafka", "DigitalTrade.Payment.Api.Contracts.Kafka\DigitalTrade.Payment.Api.Contracts.Kafka.csproj", "{D386DF6C-015D-403F-B2F3-284F4C0E29DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalTrade.Payment.AppServices", "DigitalTrade.Payment.AppServices\DigitalTrade.Payment.AppServices.csproj", "{54EA6382-E53B-42AD-AF8F-0EB0BA0E61C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalTrade.Payment.Api.Contracts", "DigitalTrade.Payment.Api.Contracts\DigitalTrade.Payment.Api.Contracts.csproj", "{B3543EA5-DAD3-4D99-AD41-4BB7CFADC0EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{D507BB59-7785-4CD2-AFA7-3E31632E0294}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BB77A1F-70AF-4566-AE36-3986FC55D8DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BB77A1F-70AF-4566-AE36-3986FC55D8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BB77A1F-70AF-4566-AE36-3986FC55D8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BB77A1F-70AF-4566-AE36-3986FC55D8DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D386DF6C-015D-403F-B2F3-284F4C0E29DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D386DF6C-015D-403F-B2F3-284F4C0E29DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D386DF6C-015D-403F-B2F3-284F4C0E29DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D386DF6C-015D-403F-B2F3-284F4C0E29DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54EA6382-E53B-42AD-AF8F-0EB0BA0E61C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54EA6382-E53B-42AD-AF8F-0EB0BA0E61C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54EA6382-E53B-42AD-AF8F-0EB0BA0E61C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54EA6382-E53B-42AD-AF8F-0EB0BA0E61C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3543EA5-DAD3-4D99-AD41-4BB7CFADC0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3543EA5-DAD3-4D99-AD41-4BB7CFADC0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3543EA5-DAD3-4D99-AD41-4BB7CFADC0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3543EA5-DAD3-4D99-AD41-4BB7CFADC0EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
