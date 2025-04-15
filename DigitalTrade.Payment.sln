@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{D5
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalTrade.Payment.Migrations", "DigitalTrade.Payment.Migrations\DigitalTrade.Payment.Migrations.csproj", "{89D0C447-DE26-494E-AB85-E74E02D4A7C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalTrade.Payment.Entities", "DigitalTrade.Payment.Entities\DigitalTrade.Payment.Entities.csproj", "{C7FE40A9-3F87-4E34-A195-2DF3322EACD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,5 +39,13 @@ Global
 		{B3543EA5-DAD3-4D99-AD41-4BB7CFADC0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3543EA5-DAD3-4D99-AD41-4BB7CFADC0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3543EA5-DAD3-4D99-AD41-4BB7CFADC0EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89D0C447-DE26-494E-AB85-E74E02D4A7C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89D0C447-DE26-494E-AB85-E74E02D4A7C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89D0C447-DE26-494E-AB85-E74E02D4A7C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89D0C447-DE26-494E-AB85-E74E02D4A7C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7FE40A9-3F87-4E34-A195-2DF3322EACD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7FE40A9-3F87-4E34-A195-2DF3322EACD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7FE40A9-3F87-4E34-A195-2DF3322EACD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7FE40A9-3F87-4E34-A195-2DF3322EACD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
