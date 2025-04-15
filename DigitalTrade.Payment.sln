@@ -11,6 +11,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{D507BB59-7785-4CD2-AFA7-3E31632E0294}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalTrade.Payment.Migrations", "DigitalTrade.Payment.Migrations\DigitalTrade.Payment.Migrations.csproj", "{89D0C447-DE26-494E-AB85-E74E02D4A7C9}"

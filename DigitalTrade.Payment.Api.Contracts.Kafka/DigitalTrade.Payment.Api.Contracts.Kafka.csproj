@@ -2,10 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
-        <LangVersion>14</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <RootNamespace>DigitalTrade.Payment.Kafka.Contracts</RootNamespace>
+        <Nullable>disable</Nullable>
     </PropertyGroup>
 
 </Project>
