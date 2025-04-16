@@ -18,3 +18,4 @@ public class EntitiesDataConnection : DataConnection
     /// Таблица Запросы об оплате.
     /// </summary>
     public ITable<PaymentEntity> Clients => this.GetTable<PaymentEntity>();
+}

@@ -5,6 +5,9 @@
   <ItemGroup>
     <PackageVersion Include="dbup-postgresql" Version="6.0.3" />
     <PackageVersion Include="KafkaFlow" Version="4.0.0-beta4" />
+    <PackageVersion Include="KafkaFlow.LogHandler.Console" Version="4.0.0-beta4" />
+    <PackageVersion Include="KafkaFlow.Microsoft.DependencyInjection" Version="4.0.0-beta4" />
+    <PackageVersion Include="KafkaFlow.Serializer.JsonCore" Version="4.0.0-beta4" />
     <PackageVersion Include="linq2db" Version="5.4.1" />
     <PackageVersion Include="linq2db.PostgreSQL" Version="5.4.1" />
     <PackageVersion Include="linq2db.AspNet" Version="5.4.1" />

@@ -1,7 +1,31 @@
+using DigitalTrade.Payment.Api.Contracts.Payment;
+using KafkaFlow;
+using KafkaFlow.Serializer;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddKafka(kafka => kafka
+    .UseConsoleLog()
+    .AddCluster(cluster => cluster
+        .WithBrokers(new[] { "localhost:9092" })
+        .CreateTopicIfNotExists(Topics.PaymentRequest, 1, 1)
+        .AddConsumer(consumer => consumer
+            .Topic("orders")
+            .WithGroupId("payment-service")
+            .WithName("order-created-consumer")
+            .WithBufferSize(100)
+            .WithWorkersCount(4)
+            .AddMiddlewares(m => m
+                .AddSerializer<JsonCoreSerializer>()
+                .AddTypedHandlers(h => h.AddHandler<PaymentMessageConsumer>())
+            )
+        )
+    )
+);
 
 var app = builder.Build();
 

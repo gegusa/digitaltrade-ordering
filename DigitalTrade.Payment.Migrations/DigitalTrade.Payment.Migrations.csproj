@@ -7,4 +7,25 @@
         <Nullable>disable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="dbup-postgresql" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Scripts\Migrations\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Scripts\Initial\20250328173840_create_table_clients.sql" />
+      <Content Include="Scripts\Initial\20250328173840_create_table_clients.sql">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="appsettings.json" />
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

@@ -8,6 +8,13 @@
 
     <ItemGroup>
       <PackageReference Include="KafkaFlow" />
+      <PackageReference Include="KafkaFlow.LogHandler.Console" />
+      <PackageReference Include="KafkaFlow.Microsoft.DependencyInjection" />
+      <PackageReference Include="KafkaFlow.Serializer.JsonCore" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DigitalTrade.Payment.Api.Contracts\DigitalTrade.Payment.Api.Contracts.csproj" />
     </ItemGroup>
 
 </Project>
