@@ -7,10 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="KafkaFlow" />
-      <PackageReference Include="KafkaFlow.LogHandler.Console" />
-      <PackageReference Include="KafkaFlow.Microsoft.DependencyInjection" />
-      <PackageReference Include="KafkaFlow.Serializer.JsonCore" />
+        <PackageReference Include="KafkaFlow.Microsoft.DependencyInjection" />
     </ItemGroup>
 
     <ItemGroup>

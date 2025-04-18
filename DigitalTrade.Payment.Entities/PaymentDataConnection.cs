@@ -7,9 +7,9 @@ namespace DigitalTrade.Payment.Entities;
 /// <summary>
 /// Абстракция подключения к базе данных.
 /// </summary>
-public class EntitiesDataConnection : DataConnection
+public class PaymentDataConnection : DataConnection
 {
-    public EntitiesDataConnection(DataOptions<EntitiesDataConnection> options)
+    public PaymentDataConnection(DataOptions<PaymentDataConnection> options)
         : base(options.Options)
     {
     }

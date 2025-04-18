@@ -6,4 +6,18 @@
         <Nullable>disable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="KafkaFlow.Microsoft.DependencyInjection" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+      <PackageReference Include="KafkaFlow" />
+      <PackageReference Include="KafkaFlow.LogHandler.Console" />
+      <PackageReference Include="KafkaFlow.Microsoft.DependencyInjection" />
+      <PackageReference Include="KafkaFlow.Serializer.JsonCore" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DigitalTrade.Payment.Api.Contracts\DigitalTrade.Payment.Api.Contracts.csproj" />
+      <ProjectReference Include="..\DigitalTrade.Payment.Entities\DigitalTrade.Payment.Entities.csproj" />
+    </ItemGroup>
+
 </Project>

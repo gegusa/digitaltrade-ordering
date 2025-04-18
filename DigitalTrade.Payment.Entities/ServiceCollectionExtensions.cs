@@ -14,7 +14,7 @@ public static class ServiceCollectionExtensions
 
         var dbConfig = configuration.GetConnectionString("DefaultConnection")!;
 
-        services.AddLinqToDBContext<EntitiesDataConnection>((provider, options)
+        services.AddLinqToDBContext<PaymentDataConnection>((provider, options)
             => options
                 .UsePostgreSQL(dbConfig)
                 .UseDefaultLogging(provider));
