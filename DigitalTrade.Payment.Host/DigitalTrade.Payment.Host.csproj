@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DigitalTrade.Payment.Api.Contracts\DigitalTrade.Payment.Api.Contracts.csproj" />
+      <ProjectReference Include="..\DigitalTrade.Payment.AppServices\DigitalTrade.Payment.AppServices.csproj" />
     </ItemGroup>
 
 </Project>

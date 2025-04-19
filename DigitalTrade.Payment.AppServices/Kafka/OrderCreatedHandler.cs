@@ -4,19 +4,22 @@ using DigitalTrade.Payment.Api.Contracts.Payment.Dto;
 using DigitalTrade.Payment.Entities;
 using DigitalTrade.Payment.Entities.Entities;
 using KafkaFlow;
+using KafkaFlow.Producers;
 using LinqToDB;
 
 namespace DigitalTrade.Payment.AppServices.Kafka;
 
 public class OrderCreatedHandler : IMessageHandler<OrderCreatedMessage>
 {
-    private readonly PaymentDataConnection _db;
-    private readonly IMessageProducer _producer;
+    public const string ProducerName = nameof(OrderCreatedHandler);
 
-    public OrderCreatedHandler(PaymentDataConnection db, IMessageProducer producer)
+    private readonly PaymentDataConnection _db;
+    private readonly IProducerAccessor _producers;
+
+    public OrderCreatedHandler(PaymentDataConnection db, IProducerAccessor producers)
     {
         _db = db;
-        _producer = producer;
+        _producers = producers;
     }
 
     public async Task Handle(IMessageContext context, OrderCreatedMessage message)
@@ -38,7 +41,7 @@ public class OrderCreatedHandler : IMessageHandler<OrderCreatedMessage>
     
         await _db.UpdateAsync(paymentEntity);
 
-        await _producer.ProduceAsync(Topics.PaymentRequest, new
+        await _producers[ProducerName].ProduceAsync(Topics.PaymentRequest, new
         {
             paymentEntity.OrderId,
             paymentEntity.Status
