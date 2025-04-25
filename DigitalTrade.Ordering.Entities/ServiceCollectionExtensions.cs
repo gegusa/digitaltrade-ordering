@@ -4,7 +4,7 @@ using LinqToDB.AspNet.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DigitalTrade.Payment.Entities;
+namespace DigitalTrade.Ordering.Entities;
 
 public static class ServiceCollectionExtensions
 {
@@ -14,7 +14,7 @@ public static class ServiceCollectionExtensions
 
         var dbConfig = configuration.GetConnectionString("DefaultConnection")!;
 
-        services.AddLinqToDBContext<PaymentDataConnection>((provider, options)
+        services.AddLinqToDBContext<OrderingDataConnection>((provider, options)
             => options
                 .UsePostgreSQL(dbConfig)
                 .UseDefaultLogging(provider));

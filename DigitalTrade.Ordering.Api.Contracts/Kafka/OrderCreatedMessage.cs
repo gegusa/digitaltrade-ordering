@@ -1,4 +1,4 @@
-﻿namespace DigitalTrade.Payment.Api.Contracts.Kafka;
+﻿namespace DigitalTrade.Ordering.Api.Contracts.Kafka;
 
 public class OrderCreatedMessage
 {

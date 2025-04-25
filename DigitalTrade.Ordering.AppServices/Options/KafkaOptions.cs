@@ -1,4 +1,4 @@
-﻿namespace DigitalTrade.Payment.AppServices.Options;
+﻿namespace DigitalTrade.Ordering.AppServices.Options;
 
 /// <summary>
 /// Параметры настройки Kafka.

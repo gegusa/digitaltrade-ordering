@@ -1,6 +1,6 @@
+using DigitalTrade.Ordering.Entities;
+using DigitalTrade.Ordering.Host.Extensions;
 using KafkaFlow;
-using DigitalTrade.Payment.Entities;
-using DigitalTrade.Payment.Host.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;

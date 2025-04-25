@@ -1,10 +1,10 @@
-﻿using DigitalTrade.Payment.Api.Contracts.Payment;
-using DigitalTrade.Payment.AppServices.Kafka;
-using DigitalTrade.Payment.AppServices.Options;
+﻿using DigitalTrade.Ordering.Api.Contracts.Ordering;
+using DigitalTrade.Ordering.AppServices.Kafka;
+using DigitalTrade.Ordering.AppServices.Options;
 using KafkaFlow;
 using KafkaFlow.Serializer;
 
-namespace DigitalTrade.Payment.Host.Extensions;
+namespace DigitalTrade.Ordering.Host.Extensions;
 
 public static class ServiceCollectionExtensions
 {
@@ -30,7 +30,7 @@ public static class ServiceCollectionExtensions
             .AddCluster(cluster => cluster
                 .WithBrokers(kafkaOptions.Servers)
                 .CreateTopicIfNotExists(Topics.PaymentRequest, 1, 1)
-                .CreateTopicIfNotExists(Topics.OrderRequest, 1, 1)
+                .CreateTopicIfNotExists(Topics.OrderingRequest, 1, 1)
                 .AddConsumer(consumer => consumer
                     .Topic("orders")
                     .WithGroupId(kafkaOptions.ConsumerGroup)
@@ -53,7 +53,7 @@ public static class ServiceCollectionExtensions
                 .AddProducer(
                     OrderCreatedHandler.ProducerName,
                     producer => producer
-                        .DefaultTopic(Topics.PaymentRequest)
+                        .DefaultTopic(Topics.OrderingRequest)
                         .AddMiddlewares(m =>
                             m.AddSerializer<JsonCoreSerializer>()
                         )

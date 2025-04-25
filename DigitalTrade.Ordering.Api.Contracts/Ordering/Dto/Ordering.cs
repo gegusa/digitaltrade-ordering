@@ -1,6 +1,6 @@
-﻿namespace DigitalTrade.Payment.Api.Contracts.Payment.Dto;
+﻿namespace DigitalTrade.Ordering.Api.Contracts.Ordering.Dto;
 
-public class Payment
+public class Ordering
 {
     public long Id { get; set; }
 
@@ -8,7 +8,7 @@ public class Payment
 
     public decimal Amount { get; set; }
 
-    public PaymentStatus Status { get; set; }
+    public OrderingStatus Status { get; set; }
 
     public DateTime CreatedAt { get; set; }
 }

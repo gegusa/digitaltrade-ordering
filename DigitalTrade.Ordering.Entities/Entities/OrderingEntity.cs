@@ -1,10 +1,10 @@
-﻿using DigitalTrade.Payment.Api.Contracts.Payment.Dto;
+﻿using DigitalTrade.Ordering.Api.Contracts.Ordering.Dto;
 using LinqToDB.Mapping;
 
-namespace DigitalTrade.Payment.Entities.Entities;
+namespace DigitalTrade.Ordering.Entities.Entities;
 
 [Table(Name = "payments", Schema = "payments")]
-public class PaymentEntity
+public class OrderingEntity
 {
     [PrimaryKey, Identity, Column("id")] public long Id { get; set; }
 
@@ -12,7 +12,7 @@ public class PaymentEntity
 
     [Column("amount"), NotNull] public decimal Amount { get; set; }
 
-    [Column("status"), NotNull] public PaymentStatus Status { get; set; }
+    [Column("status"), NotNull] public OrderingStatus Status { get; set; }
 
     [Column("created_at"), NotNull] public DateTime CreatedAt { get; set; }
 }

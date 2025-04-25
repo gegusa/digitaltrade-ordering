@@ -16,8 +16,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DigitalTrade.Payment.Api.Contracts\DigitalTrade.Payment.Api.Contracts.csproj" />
-      <ProjectReference Include="..\DigitalTrade.Payment.Entities\DigitalTrade.Payment.Entities.csproj" />
+      <ProjectReference Include="..\DigitalTrade.Ordering.Api.Contracts\DigitalTrade.Ordering.Api.Contracts.csproj" />
+      <ProjectReference Include="..\DigitalTrade.Ordering.Entities\DigitalTrade.Ordering.Entities.csproj" />
     </ItemGroup>
 
 </Project>

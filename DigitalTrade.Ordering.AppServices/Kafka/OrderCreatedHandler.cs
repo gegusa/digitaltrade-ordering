@@ -1,22 +1,22 @@
-﻿using DigitalTrade.Payment.Api.Contracts.Kafka;
-using DigitalTrade.Payment.Api.Contracts.Payment;
-using DigitalTrade.Payment.Api.Contracts.Payment.Dto;
-using DigitalTrade.Payment.Entities;
-using DigitalTrade.Payment.Entities.Entities;
+﻿using DigitalTrade.Ordering.Api.Contracts.Kafka;
+using DigitalTrade.Ordering.Api.Contracts.Ordering;
+using DigitalTrade.Ordering.Api.Contracts.Ordering.Dto;
+using DigitalTrade.Ordering.Entities;
+using DigitalTrade.Ordering.Entities.Entities;
 using KafkaFlow;
 using KafkaFlow.Producers;
 using LinqToDB;
 
-namespace DigitalTrade.Payment.AppServices.Kafka;
+namespace DigitalTrade.Ordering.AppServices.Kafka;
 
 public class OrderCreatedHandler : IMessageHandler<OrderCreatedMessage>
 {
     public const string ProducerName = nameof(OrderCreatedHandler);
 
-    private readonly PaymentDataConnection _db;
+    private readonly OrderingDataConnection _db;
     private readonly IProducerAccessor _producers;
 
-    public OrderCreatedHandler(PaymentDataConnection db, IProducerAccessor producers)
+    public OrderCreatedHandler(OrderingDataConnection db, IProducerAccessor producers)
     {
         _db = db;
         _producers = producers;
@@ -24,24 +24,24 @@ public class OrderCreatedHandler : IMessageHandler<OrderCreatedMessage>
 
     public async Task Handle(IMessageContext context, OrderCreatedMessage message)
     {
-        var paymentEntity = new PaymentEntity
+        var paymentEntity = new OrderingEntity
         {
             OrderId = message.OrderId,
             Amount = message.Amount,
-            Status = PaymentStatus.Pending,
+            Status = OrderingStatus.Pending,
             CreatedAt = DateTime.UtcNow
         };
 
         await _db.InsertAsync(paymentEntity);
 
         // Симулируем оплату
-        var success = PaymentHelper.GetRandomNumber(0, 2) == 1;
+        var success = OrderingHelper.GetRandomNumber(0, 2) == 1;
 
-        paymentEntity.Status = success ? PaymentStatus.Completed : PaymentStatus.Failed;
+        paymentEntity.Status = success ? OrderingStatus.Completed : OrderingStatus.Failed;
     
         await _db.UpdateAsync(paymentEntity);
 
-        await _producers[ProducerName].ProduceAsync(Topics.PaymentRequest, new
+        await _producers[ProducerName].ProduceAsync(Topics.OrderingRequest, new
         {
             paymentEntity.OrderId,
             paymentEntity.Status

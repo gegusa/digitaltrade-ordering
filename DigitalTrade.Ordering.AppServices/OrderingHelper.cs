@@ -1,6 +1,6 @@
-﻿namespace DigitalTrade.Payment.AppServices;
+﻿namespace DigitalTrade.Ordering.AppServices;
 
-internal static class PaymentHelper
+internal static class OrderingHelper
 {
     private static readonly ThreadLocal<Random> ThreadLocalRandom = 
         new(() => new Random());
