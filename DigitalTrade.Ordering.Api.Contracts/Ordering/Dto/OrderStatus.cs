@@ -1,6 +1,6 @@
 ﻿namespace DigitalTrade.Ordering.Api.Contracts.Ordering.Dto;
 
-public enum OrderingStatus
+public enum OrderStatus
 {
     Undefined = 0,
     Pending = 1,

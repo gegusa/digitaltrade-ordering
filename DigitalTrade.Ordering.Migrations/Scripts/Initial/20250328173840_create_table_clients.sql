@@ -1,15 +1,44 @@
-create schema payment
+CREATE SCHEMA IF NOT EXISTS ordering;
 
-create table if not exists payment.payment (
-    id            bigserial primary key,
-    order_id      bigserial not null,
-    amount        decimal not null,
-    status        int not null,
-    created_at    timestamp with time zone not null
+CREATE TABLE ordering.customers
+(
+    id    BIGSERIAL PRIMARY KEY,
+    name  TEXT NOT NULL,
+    email TEXT NOT NULL
 );
 
-comment on table payment.payment is 'Пользователи торговой площадки.';
-comment on column payment.payment.id is 'ID оплаты.';
-comment on column payment.payment.order_id is 'ID заказа.';
-comment on column payment.payment.amount is 'Стоимость заказа.';
-comment on column payment.payment.created_at is 'Дата и время инициализации оплаты.';
+CREATE TABLE ordering.orders
+(
+    id               BIGSERIAL PRIMARY KEY,
+    customer_id      BIGINT         NOT NULL,
+    shipping_address TEXT           NOT NULL,
+    billing_address  TEXT           NOT NULL,
+    payment          TEXT           NOT NULL,
+    amount           NUMERIC(18, 2) NOT NULL,
+    status           INT            NOT NULL,
+    created_at       TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id)
+        REFERENCES ordering.customers (id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE ordering.products
+(
+    id    BIGSERIAL PRIMARY KEY,
+    name  TEXT           NOT NULL,
+    price NUMERIC(18, 2) NOT NULL
+);
+
+CREATE TABLE ordering.order_items
+(
+    id         BIGSERIAL PRIMARY KEY,
+    order_id   BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    quantity   BIGINT NOT NULL,
+    CONSTRAINT fk_order_items_order FOREIGN KEY (order_id)
+        REFERENCES ordering.orders (id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_order_items_product FOREIGN KEY (product_id)
+        REFERENCES ordering.products (id)
+        ON DELETE CASCADE
+);

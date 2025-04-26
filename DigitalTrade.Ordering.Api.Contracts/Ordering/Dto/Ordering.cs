@@ -8,7 +8,7 @@ public class Ordering
 
     public decimal Amount { get; set; }
 
-    public OrderingStatus Status { get; set; }
+    public OrderStatus Status { get; set; }
 
     public DateTime CreatedAt { get; set; }
 }

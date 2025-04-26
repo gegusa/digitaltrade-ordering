@@ -17,5 +17,5 @@ public class OrderingDataConnection : DataConnection
     /// <summary>
     /// Таблица Запросы об оплате.
     /// </summary>
-    public ITable<OrderingEntity> Clients => this.GetTable<OrderingEntity>();
+    public ITable<OrderEntity> Orders => this.GetTable<OrderEntity>();
 }

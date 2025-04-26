@@ -24,11 +24,11 @@ public class OrderCreatedHandler : IMessageHandler<OrderCreatedMessage>
 
     public async Task Handle(IMessageContext context, OrderCreatedMessage message)
     {
-        var paymentEntity = new OrderingEntity
+        var paymentEntity = new OrderEntity
         {
             OrderId = message.OrderId,
             Amount = message.Amount,
-            Status = OrderingStatus.Pending,
+            Status = OrderStatus.Pending,
             CreatedAt = DateTime.UtcNow
         };
 
@@ -37,7 +37,7 @@ public class OrderCreatedHandler : IMessageHandler<OrderCreatedMessage>
         // Симулируем оплату
         var success = OrderingHelper.GetRandomNumber(0, 2) == 1;
 
-        paymentEntity.Status = success ? OrderingStatus.Completed : OrderingStatus.Failed;
+        paymentEntity.Status = success ? OrderStatus.Completed : OrderStatus.Failed;
     
         await _db.UpdateAsync(paymentEntity);
 
