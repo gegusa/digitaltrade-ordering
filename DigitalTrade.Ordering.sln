@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{D5
 		Directory.Packages.props = Directory.Packages.props
 		Dockerfile = Dockerfile
 		Dockerfile-migration = Dockerfile-migration
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalTrade.Ordering.Migrations", "DigitalTrade.Ordering.Migrations\DigitalTrade.Ordering.Migrations.csproj", "{89D0C447-DE26-494E-AB85-E74E02D4A7C9}"
