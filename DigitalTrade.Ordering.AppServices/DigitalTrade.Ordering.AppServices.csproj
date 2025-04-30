@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="DigitalTrade.Basket.Api.Contracts" />
       <PackageReference Include="KafkaFlow.Microsoft.DependencyInjection" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
       <PackageReference Include="KafkaFlow" />

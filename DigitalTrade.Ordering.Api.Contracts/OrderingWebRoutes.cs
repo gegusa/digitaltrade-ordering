@@ -4,11 +4,9 @@ public static class OrderingWebRoutes
 {
     public const string BasePath = "ordering";
 
-    public const string CreateOrder = "create";
+    public const string InitiatePayment = "payment";
 
-    public const string UpdateOrder = "update";
-
-    public const string DeleteOrder = $"delete/{Id}";
+    public const string DeleteOrder = "delete";
 
     public const string Id = "{id}";
 
@@ -16,5 +14,5 @@ public static class OrderingWebRoutes
 
     public const string GetOrdersByClient = $"{GetOrders}/by-client/{Id}";
 
-    public const string GetOrdersByNane = $"{GetOrders}/by-name/{{orderName}}";
+    public const string SetOrderPrerequisites = "set-prerequisites";
 }

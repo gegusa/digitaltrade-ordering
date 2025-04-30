@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalTrade.Ordering.Host.Controllers;
 
-[Authorize]
 [ApiController]
 [Route(OrderingWebRoutes.BasePath)]
 public class OrderingController : ControllerBase
@@ -18,23 +17,9 @@ public class OrderingController : ControllerBase
         _handler = handler;
     }
 
-    [AllowAnonymous]
-    [HttpPost(OrderingWebRoutes.CreateOrder)]
-    public Task<CreateOrderResponse> CreateOrder([FromBody] CreateOrderRequest request, CancellationToken ct)
-    {
-        return _handler.CreateOrderAsync(request, ct);
-    }
-
-    [AllowAnonymous]
-    [HttpPost(OrderingWebRoutes.UpdateOrder)]
-    public Task<UpdateOrderResponse> UpdateOrder([FromBody] UpdateOrderRequest request, CancellationToken ct)
-    {
-        return _handler.UpdateOrderAsync(request, ct);
-    }
-    
-    [AllowAnonymous]
     [HttpPost(OrderingWebRoutes.DeleteOrder)]
-    public Task<DeleteOrderResponse> DeleteOrder([FromRoute] long id, CancellationToken ct)
+    public Task DeleteOrder(
+        [FromRoute] long id, CancellationToken ct)
     {
         return _handler.DeleteOrderAsync(new DeleteOrderRequest
         {
@@ -42,27 +27,27 @@ public class OrderingController : ControllerBase
         }, ct);
     }
 
-    [AllowAnonymous]
     [HttpGet(OrderingWebRoutes.GetOrders)]
-    public Task<GetOrdersResponse> GetOrders([FromBody] GetOrdersRequest request, CancellationToken ct)
+    public Task<GetOrderByIdResponse> GetOrderById(
+        [FromBody] GetOrderByIdRequest request, CancellationToken ct)
     {
-        return _handler.GetOrdersAsync(request, ct);
-    }
-    
-    [AllowAnonymous]
-    [HttpGet(OrderingWebRoutes.GetOrdersByNane)]
-    public Task<GetOrdersByNameResponse> GetOrdersByName([FromBody] GetOrdersByNameRequest request, CancellationToken ct)
-    {
-        return _handler.GetOrdersByNameAsync(request, ct);
+        return _handler.GetOrderByIdAsync(request, ct);
     }
 
-    [AllowAnonymous]
     [HttpGet(OrderingWebRoutes.GetOrdersByClient)]
-    public Task<GetOrdersByClientResponse> GetOrdersByClient([FromBody] long id, CancellationToken ct)
+    public Task<GetOrdersByClientResponse> GetOrdersByClient(
+        [FromBody] long id, CancellationToken ct)
     {
         return _handler.GetOrdersByClientAsync(new GetOrdersByClientRequest
         {
             ClientId = id
         }, ct);
+    }
+
+    [HttpPost(OrderingWebRoutes.SetOrderPrerequisites)]
+    public Task SetOrderPrerequisites(
+        [FromBody] SetOrderPrerequisitesRequest request, CancellationToken ct)
+    {
+        return _handler.SetOrderPrerequisites(request, ct);
     }
 }

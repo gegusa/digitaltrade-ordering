@@ -12,9 +12,11 @@ public class OrderEntity
 
     [Column("shipping_address"), NotNull] public string ShippingAddress { get; set; }
 
-    [Column("billing_address"), NotNull] public string BillingAddress { get; set; }
-
     [Column("payment"), NotNull] public string Payment { get; set; }
+
+    #nullable enable
+    [Column("credit_card")] public string? CreditCard { get; set; }
+    #nullable disable
     [Column("amount"), NotNull] public decimal Amount { get; set; }
 
     [Column("status"), NotNull] public OrderStatus Status { get; set; }

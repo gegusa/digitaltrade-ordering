@@ -1,6 +1,6 @@
 ﻿namespace DigitalTrade.Ordering.Api.Contracts.Ordering.Request;
 
-public class CreateOrderRequest
+public class GetOrderByIdRequest
 {
-    
+    public long OrderId { get; set; }
 }

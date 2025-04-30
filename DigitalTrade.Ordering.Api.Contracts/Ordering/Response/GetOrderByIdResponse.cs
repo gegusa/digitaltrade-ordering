@@ -2,7 +2,7 @@
 
 namespace DigitalTrade.Ordering.Api.Contracts.Ordering.Response;
 
-public class GetOrdersByClientResponse
+public class GetOrderByIdResponse
 {
-    public IReadOnlyCollection<Order> Orders { get; set; }
+    public Order Order { get; set; }
 }
