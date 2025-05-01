@@ -12,4 +12,6 @@ public interface IOrderingHandler
     public Task<GetOrderByIdResponse> GetOrderByIdAsync(GetOrderByIdRequest request, CancellationToken ct);
 
     public Task SetOrderPrerequisites(SetOrderPrerequisitesRequest request, CancellationToken ct);
+
+    public Task InitiatePayment(InitiatePaymentRequest request, CancellationToken ct);
 }

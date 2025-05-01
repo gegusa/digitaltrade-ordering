@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Kafka\" />
       <Folder Include="Ordering\Web\" />
     </ItemGroup>
 

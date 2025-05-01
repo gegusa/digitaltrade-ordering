@@ -1,48 +1,41 @@
 ﻿using DigitalTrade.Basket.Api.Contracts.Kafka.Events;
 using DigitalTrade.Ordering.Api.Contracts.Ordering.Dto;
+using DigitalTrade.Ordering.AppServices.Mappers;
 using DigitalTrade.Ordering.Entities;
 using DigitalTrade.Ordering.Entities.Entities;
 using KafkaFlow;
 using KafkaFlow.Producers;
 using LinqToDB;
+using LinqToDB.Data;
 
 namespace DigitalTrade.Ordering.AppServices.Kafka;
 
 public class BasketCheckoutRequestedEventHandler : IMessageHandler<BasketCheckoutRequestedEvent>
 {
     private readonly OrderingDataConnection _db;
-    private readonly IProducerAccessor _producers;
 
-    public BasketCheckoutRequestedEventHandler(OrderingDataConnection db, IProducerAccessor producers)
+    public BasketCheckoutRequestedEventHandler(OrderingDataConnection db)
     {
         _db = db;
-        _producers = producers;
     }
 
     public async Task Handle(IMessageContext context, BasketCheckoutRequestedEvent message)
     {
-        // здесь должен быть синхронный запрос в clients для получения информации о заказе
-        var OrderEntity = new OrderEntity
+        var basket = message.Basket;
+
+        var orderEntity = new OrderEntity
         {
             Amount = message.TotalPrice,
-            Status = OrderStatus.Pending,
+            Status = OrderStatus.Created,
             CreatedAt = DateTime.UtcNow,
             CustomerId = message.ClientId
         };
 
-        await _db.InsertAsync(paymentEntity);
+        var orderId = await _db.InsertWithInt64IdentityAsync(orderEntity);
 
-        // Симулируем оплату
-        var success = OrderingHelper.GetRandomNumber(0, 2) == 1;
-
-        paymentEntity.Status = success ? OrderStatus.Completed : OrderStatus.Failed;
-    
-        await _db.UpdateAsync(paymentEntity);
-
-        await _producers[ProducerName].ProduceAsync(Topics.OrderingRequest, new
+        var result = await _db.BulkCopyAsync(new BulkCopyOptions
         {
-            paymentEntity.OrderId,
-            paymentEntity.Status
-        });
+            BulkCopyType = BulkCopyType.ProviderSpecific
+        }, basket.Select(b => b.ToOrderItemEntity(orderId)));
     }
 }

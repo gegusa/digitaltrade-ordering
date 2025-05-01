@@ -3,7 +3,8 @@
 public enum OrderStatus
 {
     Undefined = 0,
-    Pending = 1,
-    Completed = 2,
-    Failed = 3
+    Created = 1,
+    Pending = 2,
+    Completed = 3,
+    Failed = 4
 }

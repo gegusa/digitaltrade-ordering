@@ -1,8 +1,8 @@
-﻿using DigitalTrade.Ordering.Api.Contracts.Ordering;
-using DigitalTrade.Ordering.AppServices.Kafka;
+﻿using DigitalTrade.Ordering.AppServices.Kafka;
 using DigitalTrade.Ordering.AppServices.Options;
 using KafkaFlow;
 using KafkaFlow.Serializer;
+using Topics = DigitalTrade.Ordering.Api.Contracts.Kafka.Topics;
 
 namespace DigitalTrade.Ordering.Host.Extensions;
 
@@ -29,10 +29,9 @@ public static class ServiceCollectionExtensions
             .UseConsoleLog()
             .AddCluster(cluster => cluster
                 .WithBrokers(kafkaOptions.Servers)
-                .CreateTopicIfNotExists(Topics.PaymentRequest, 1, 1)
-                .CreateTopicIfNotExists(Topics.OrderingRequest, 1, 1)
+                .CreateTopicIfNotExists(Topics.PaymentRequestedTopicName, 1, 1)
                 .AddConsumer(consumer => consumer
-                    .Topic("orders")
+                    .Topic(Basket.Api.Contracts.Kafka.Topics.BasketCheckoutRequestedName)
                     .WithGroupId(kafkaOptions.ConsumerGroup)
                     .WithBufferSize(100)
                     .WithWorkersCount(10)
@@ -40,7 +39,26 @@ public static class ServiceCollectionExtensions
                         .AddDeserializer<JsonCoreDeserializer>()
                         .AddTypedHandlers(h => h
                             .WithHandlerLifetime(InstanceLifetime.Scoped)
-                            .AddHandler<OrderCreatedHandler>()
+                            .AddHandler<BasketCheckoutRequestedEventHandler>()
+                            .WhenNoHandlerFound(context =>
+                                Console.WriteLine("Message not handled > Partition: {0} | Offset: {1}",
+                                    context.ConsumerContext.Partition,
+                                    context.ConsumerContext.Offset
+                                )
+                            )
+                        )
+                    )
+                )
+                .AddConsumer(consumer => consumer
+                    .Topic(Topics.PaymentRequestedTopicName)
+                    .WithGroupId(kafkaOptions.ConsumerGroup)
+                    .WithBufferSize(100)
+                    .WithWorkersCount(10)
+                    .AddMiddlewares(m => m
+                        .AddDeserializer<JsonCoreDeserializer>()
+                        .AddTypedHandlers(h => h
+                            .WithHandlerLifetime(InstanceLifetime.Scoped)
+                            .AddHandler<PaymentRequestedEventHandler>()
                             .WhenNoHandlerFound(context =>
                                 Console.WriteLine("Message not handled > Partition: {0} | Offset: {1}",
                                     context.ConsumerContext.Partition,
@@ -51,9 +69,9 @@ public static class ServiceCollectionExtensions
                     )
                 )
                 .AddProducer(
-                    OrderCreatedHandler.ProducerName,
+                    Topics.PaymentRequestedTopicProducerName,
                     producer => producer
-                        .DefaultTopic(Topics.OrderingRequest)
+                        .DefaultTopic(Topics.PaymentRequestedTopicName)
                         .AddMiddlewares(m =>
                             m.AddSerializer<JsonCoreSerializer>()
                         )

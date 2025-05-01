@@ -17,6 +17,12 @@ public class OrderingController : ControllerBase
         _handler = handler;
     }
 
+    [HttpPost(OrderingWebRoutes.InitiatePayment)]
+    public Task InitiatePayment(InitiatePaymentRequest request, CancellationToken ct)
+    {
+        return _handler.InitiatePayment(request, ct);
+    }
+
     [HttpPost(OrderingWebRoutes.DeleteOrder)]
     public Task DeleteOrder(
         [FromRoute] long id, CancellationToken ct)

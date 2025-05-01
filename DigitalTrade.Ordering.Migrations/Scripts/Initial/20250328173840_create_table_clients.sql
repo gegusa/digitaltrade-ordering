@@ -12,7 +12,7 @@ CREATE TABLE ordering.orders
     id               BIGSERIAL PRIMARY KEY,
     customer_id      BIGINT         NOT NULL,
     shipping_address TEXT           NOT NULL,
-    credit_card      TEXT               NULL,
+    credit_card      TEXT NULL,
     payment          TEXT           NOT NULL,
     amount           NUMERIC(18, 2) NOT NULL,
     status           INT            NOT NULL,
@@ -22,23 +22,15 @@ CREATE TABLE ordering.orders
         ON DELETE CASCADE
 );
 
-CREATE TABLE ordering.products
-(
-    id    BIGSERIAL PRIMARY KEY,
-    name  TEXT           NOT NULL,
-    price NUMERIC(18, 2) NOT NULL
-);
-
 CREATE TABLE ordering.order_items
 (
-    id         BIGSERIAL PRIMARY KEY,
-    order_id   BIGINT NOT NULL,
-    product_id BIGINT NOT NULL,
-    quantity   BIGINT NOT NULL,
+    id             BIGSERIAL PRIMARY KEY,
+    order_id       BIGINT         NOT NULL,
+    product_id     BIGINT         NOT NULL,
+    name           TEXT           NOT NULL,
+    price_per_item NUMERIC(18, 2) NOT NULL,
+    quantity       BIGINT         NOT NULL,
     CONSTRAINT fk_order_items_order FOREIGN KEY (order_id)
         REFERENCES ordering.orders (id)
-        ON DELETE CASCADE,
-    CONSTRAINT fk_order_items_product FOREIGN KEY (product_id)
-        REFERENCES ordering.products (id)
         ON DELETE CASCADE
 );
