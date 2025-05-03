@@ -1,12 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS ordering;
 
-CREATE TABLE ordering.customers
-(
-    id    BIGSERIAL PRIMARY KEY,
-    name  TEXT NOT NULL,
-    email TEXT NOT NULL
-);
-
 CREATE TABLE ordering.orders
 (
     id               BIGSERIAL PRIMARY KEY,
@@ -16,10 +9,7 @@ CREATE TABLE ordering.orders
     payment          TEXT           NOT NULL,
     amount           NUMERIC(18, 2) NOT NULL,
     status           INT            NOT NULL,
-    created_at       TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-    CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id)
-        REFERENCES ordering.customers (id)
-        ON DELETE CASCADE
+    created_at       TIMESTAMP WITHOUT TIME ZONE NOT NULL
 );
 
 CREATE TABLE ordering.order_items
