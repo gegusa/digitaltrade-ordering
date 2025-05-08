@@ -13,7 +13,6 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
       <PackageReference Include="KafkaFlow" />
       <PackageReference Include="KafkaFlow.LogHandler.Console" />
-      <PackageReference Include="KafkaFlow.Microsoft.DependencyInjection" />
       <PackageReference Include="KafkaFlow.Serializer.JsonCore" />
     </ItemGroup>
 
