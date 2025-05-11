@@ -30,6 +30,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
+app.Map("/", () => "Hello from Ordering!");
 app.MapControllers();
 var kafkaBus = app.Services.CreateKafkaBus();
 await kafkaBus.StartAsync();
