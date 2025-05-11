@@ -7,4 +7,4 @@ RUN dotnet restore ./DigitalTrade.Ordering.Migrations/DigitalTrade.Ordering.Migr
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /src
 COPY --from=build-env /src/out .
-ENTRYPOINT ["dotnet", "DigitalTrade.Ordering.Migration.dll"]
+ENTRYPOINT ["dotnet", "DigitalTrade.Ordering.Migrations.dll"]
