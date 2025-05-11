@@ -25,11 +25,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference();
-}
+
+app.MapOpenApi();
+app.MapScalarApiReference();
+
 app.Map("/", () => "Hello from Ordering!");
 app.MapControllers();
 var kafkaBus = app.Services.CreateKafkaBus();
