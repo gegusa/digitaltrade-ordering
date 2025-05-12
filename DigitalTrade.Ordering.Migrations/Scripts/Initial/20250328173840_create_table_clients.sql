@@ -4,7 +4,7 @@ CREATE TABLE ordering.orders
 (
     id               BIGSERIAL PRIMARY KEY,
     customer_id      BIGINT         NOT NULL,
-    shipping_address TEXT           NOT NULL,
+    shipping_address TEXT NULL,
     credit_card      TEXT NULL,
     payment          TEXT           NOT NULL,
     amount           NUMERIC(18, 2) NOT NULL,

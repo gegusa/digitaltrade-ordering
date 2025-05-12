@@ -98,6 +98,9 @@ internal class OrderingHandler : IOrderingHandler
         if (orderEntity.Payment is not "card")
             throw new InvalidOperationException($"Payment method of order with id={request.OrderId} is not card");
 
+        if (orderEntity.ShippingAddress is null)
+            throw new InvalidOperationException($"No shipping address specified in order with id={request.OrderId}");
+
         if (orderEntity.CreditCard is null)
             throw new InvalidOperationException($"Credit card info of order with id={request.OrderId} is empty");
 
@@ -112,7 +115,10 @@ internal class OrderingHandler : IOrderingHandler
                 CreditCard = orderEntity.CreditCard,
             };
 
-            await _producers[Topics.PaymentRequestedTopicProducerName].ProduceAsync(message, ct);
+            await _producers[Topics.PaymentRequestedTopicProducerName].ProduceAsync(
+                Topics.PaymentRequestedTopicName,
+                message.OrderId.ToString(),
+                message);
         }
     }
 }

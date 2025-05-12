@@ -28,6 +28,7 @@ public class BasketCheckoutRequestedEventHandler : IMessageHandler<BasketCheckou
             Amount = message.TotalPrice,
             Status = OrderStatus.Created,
             CreatedAt = DateTime.UtcNow,
+            Payment = "card",
             CustomerId = message.ClientId
         };
 

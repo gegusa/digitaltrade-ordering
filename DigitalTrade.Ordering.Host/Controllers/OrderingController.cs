@@ -33,16 +33,19 @@ public class OrderingController : ControllerBase
         }, ct);
     }
 
-    [HttpGet(OrderingWebRoutes.GetOrders)]
+    [HttpGet(OrderingWebRoutes.GetOrdersById)]
     public Task<GetOrderByIdResponse> GetOrderById(
-        [FromBody] GetOrderByIdRequest request, CancellationToken ct)
+        [FromRoute] long id, CancellationToken ct)
     {
-        return _handler.GetOrderByIdAsync(request, ct);
+        return _handler.GetOrderByIdAsync(new GetOrderByIdRequest
+        {
+            OrderId = id
+        }, ct);
     }
 
     [HttpGet(OrderingWebRoutes.GetOrdersByClient)]
     public Task<GetOrdersByClientResponse> GetOrdersByClient(
-        [FromBody] long id, CancellationToken ct)
+        [FromRoute] long id, CancellationToken ct)
     {
         return _handler.GetOrdersByClientAsync(new GetOrdersByClientRequest
         {

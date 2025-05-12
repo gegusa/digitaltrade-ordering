@@ -12,6 +12,8 @@ public static class OrderingWebRoutes
 
     public const string GetOrders = "get";
 
+    public const string GetOrdersById = $"{GetOrders}/{Id}";
+
     public const string GetOrdersByClient = $"{GetOrders}/by-client/{Id}";
 
     public const string SetOrderPrerequisites = "set-prerequisites";
